@@ -1,15 +1,11 @@
 import React from 'react';
 
-const Navbar: React.FC = () => {
-  return (
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
-        {/* Add other navigation links here */}
-      </ul>
-    </nav>
-  );
+type NavbarProps = {
+  
 };
 
+const Navbar:React.FC<NavbarProps> = () => {
+  
+  return <div>Have a good coding</div>
+}
 export default Navbar;
