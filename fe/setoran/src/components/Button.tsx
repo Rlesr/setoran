@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 
 // Define button styles using Tailwind CSS and DaisyUI classes
 const buttonStyles = {
-  base: 'btn transition-transform duration-200 ease-in-out', // Transition for smooth hover effect
+  base: 'btn transition-transform ', // Transition for smooth hover effect
   variants: {
     default: 'btn-secondary hover:scale-105', // Scale up on hover
     ghost: 'btn-ghost hover:bg-gray-100 hover:scale-105', // Ghost button with hover effect
