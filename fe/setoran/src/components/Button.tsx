@@ -8,7 +8,7 @@ const buttonStyles = {
   variants: {
     default: 'btn-secondary hover:scale-105', // Scale up on hover
     ghost: 'btn-ghost hover:bg-gray-100 hover:scale-105', // Ghost button with hover effect
-    dark: 'btn-dark hover:scale-105 text-secondary', // Dark button with hover effect
+    dark: 'bg-secondary-dark hover:bg-secondary-dark-hover text-secondary', // Dark button with hover effect
   },
   sizes: {
     default: 'rounded p-2',

@@ -2,12 +2,15 @@ import React from "react";
 import logoPT from "../assets/koperasiLogo.png";
 import { Bell, Menu, Moon, User } from "lucide-react";
 import Button from "../components/Button";
+import { useSidebarContext } from "../contexts/SidebarContext";
 
 const PageHeader: React.FC = () => {
+  const { toggle } = useSidebarContext(); // Move this inside the component
+
   return (
     <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">
       <div className="flex gap-4 items-center flex-shrink-0">
-        <Button variant="ghost" size="icon">
+        <Button onClick={toggle} variant="ghost" size="icon">
           <Menu />
         </Button>
         <a href="/">
@@ -17,16 +20,17 @@ const PageHeader: React.FC = () => {
       <div></div>
       <div className="flex flex-shrink-0 md:gap-2">
         <Button size="icon" variant="ghost">
-            <Moon />
+          <Moon />
         </Button>
         <Button size="icon" variant="ghost">
-            <Bell />
+          <Bell />
         </Button>
         <Button size="icon" variant="ghost">
-            <User />
+          <User />
         </Button>
       </div>
     </div>
   );
 };
+
 export default PageHeader;

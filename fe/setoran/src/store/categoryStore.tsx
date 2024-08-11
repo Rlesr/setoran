@@ -1,23 +1,15 @@
-import { create } from 'zustand';
+import create from 'zustand';
 
-type CategoryState = {
+type CategoryStore = {
+  categories: string[];
   selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
-  translate: number;
-  setTranslate: (amount: number) => void;
-  isLeftVisible: boolean;
-  setIsLeftVisible: (visible: boolean) => void;
-  isRightVisible: boolean;
-  setIsRightVisible: (visible: boolean) => void;
+  setCategories: (categories: string[]) => void;
+  selectCategory: (category: string) => void;
 };
 
-export const useCategoryStore = create<CategoryState>((set) => ({
+export const useCategoryStore = create<CategoryStore>((set) => ({
+  categories: ['All', 'Electronics', 'Books', 'Clothing'], // Default categories
   selectedCategory: 'All',
-  setSelectedCategory: (category) => set({ selectedCategory: category }),
-  translate: 0,
-  setTranslate: (amount) => set({ translate: amount }),
-  isLeftVisible: false,
-  setIsLeftVisible: (visible) => set({ isLeftVisible: visible }),
-  isRightVisible: false,
-  setIsRightVisible: (visible) => set({ isRightVisible: visible }),
+  setCategories: (categories) => set({ categories }),
+  selectCategory: (category) => set({ selectedCategory: category }),
 }));
