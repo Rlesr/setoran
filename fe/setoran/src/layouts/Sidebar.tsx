@@ -10,10 +10,10 @@ import {
   import { Children, ElementType, ReactNode, useState } from "react";
   import { twMerge } from "tailwind-merge";
   import Button from "../components/Button";
-  import { useSidebarContext } from "../contexts/SidebarContext";
+  import useSidebarStore from "../stores/useSidebarStore";
   
   export function Sidebar() {
-    const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
+    const { isLargeOpen, isSmallOpen, close } = useSidebarStore();
   
     return (
       <>

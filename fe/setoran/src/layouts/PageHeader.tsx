@@ -2,10 +2,10 @@ import React from "react";
 import logoPT from "../assets/koperasiLogo.png";
 import { Bell, Menu, Moon, User } from "lucide-react";
 import Button from "../components/Button";
-import { useSidebarContext } from "../contexts/SidebarContext";
+import useSidebarStore from "../stores/useSidebarStore";
 
 const PageHeader: React.FC = () => {
-  const { toggle } = useSidebarContext(); // Move this inside the component
+  const { toggle } = useSidebarStore(); 
 
   return (
     <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">

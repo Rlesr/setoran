@@ -1,6 +1,5 @@
 import React from "react";
-import { SidebarProvider } from "./contexts/SidebarContext"; // Adjust the import path as needed
-import Sidebar from "../src/layouts/Sidebar"
+import Sidebar from "../src/layouts/Sidebar";
 import PageHeader from "./layouts/PageHeader";
 import CategoryPills from "./components/CategoryPills";
 
@@ -10,30 +9,30 @@ const App: React.FC = () => {
     "All",
     "Sales",
     "Data Stocks",
-    "Item Data"
+    "Item Data",
   ]);
 
-  const [selectedCategory, setSelectedCategory] = React.useState<string>(categories[0]);
+  const [selectedCategory, setSelectedCategory] = React.useState<string>(
+    categories[0]
+  );
 
   return (
-    <SidebarProvider>
-      <div className="max-h-screen flex flex-col">
-        <PageHeader />
-        <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
-          <Sidebar />
-          <div className="overflow-x-hidden px-8 pb-4">
-            <div className="sticky top-0 bg-white z-10 pb-4">
-              <CategoryPills
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onSelect={setSelectedCategory}
-              />
-            </div>
-            <div className="grid gap-4"> </div>
+    <div className="max-h-screen flex flex-col">
+      <PageHeader />
+      <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
+        <Sidebar />
+        <div className="overflow-x-hidden px-8 pb-4">
+          <div className="sticky top-0 bg-white z-10 pb-4">
+            <CategoryPills
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
           </div>
+          <div className="grid gap-4"> </div>
         </div>
       </div>
-    </SidebarProvider>
+    </div>
   );
 };
 
