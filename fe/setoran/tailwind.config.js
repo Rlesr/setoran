@@ -2,6 +2,7 @@ import colors from 'tailwindcss/colors';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "selector",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -13,6 +14,16 @@ export default {
           text: colors.neutral[500],
           dark: colors.neutral[800],
           ["dark-hover"]: colors.neutral[900],
+          background: "rgba(var(--background))",
+          border: "rgba(var(--border))",
+          card: "rgba(var(--card))",
+          "copy-primary": "rgba(var(--copy-primary))",
+          "copy-secondary": "rgba(var(--copy-secondary))",
+          cta: "rgba(var(--cta))",
+          "cta-active": "rgba(var(--cta-active))",
+          "cta-text": "rgba(var(--cta-text))",
+  
+          grape: "rgba(var(--grape))",
         },
       },
     },
@@ -35,7 +46,6 @@ export default {
           "error": colors.red[500],
         },
       },
-      // Optionally, you can include DaisyUI's default themes
       'light',
       'dark',
     ],

@@ -12,7 +12,7 @@ import {
   import Button from "../components/Button";
   import useSidebarStore from "../stores/useSidebarStore";
   
-  export function Sidebar() {
+  const Sidebar = () => {
     const { isLargeOpen, isSmallOpen, close } = useSidebarStore();
   
     return (
@@ -24,11 +24,7 @@ import {
         >
           <SmallSidebarItem Icon={Home} title="Home" url="/" />
           <SmallSidebarItem Icon={Repeat} title="Shorts" url="/shorts" />
-          <SmallSidebarItem
-            Icon={Clapperboard}
-            title="Subscriptions"
-            url="/subscriptions"
-          />
+          <SmallSidebarItem Icon={Clapperboard} title="Subscriptions" url="/subscriptions" />
           <SmallSidebarItem Icon={Library} title="Library" url="/library" />
         </aside>
         {isSmallOpen && (
@@ -42,24 +38,18 @@ import {
             isLargeOpen ? "lg:flex" : "lg:hidden"
           } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}
         >
-          <div className="lg:hidden pt-2 pb-4 px-2 sticky top-0 bg-white">
-            {/* If needed, add content here */}
-          </div>
+          <div className="lg:hidden pt-2 pb-4 px-2 sticky top-0 bg-white"></div>
           <LargeSidebarSection>
             <LargeSidebarItem isActive IconOrImgUrl={Home} title="Home" url="/" />
           </LargeSidebarSection>
           <hr />
           <LargeSidebarSection title="Explore">
-            <LargeSidebarItem
-              IconOrImgUrl={Podcast}
-              title="Podcasts"
-              url="/podcasts"
-            />
+            <LargeSidebarItem IconOrImgUrl={Podcast} title="Podcasts" url="/podcasts" />
           </LargeSidebarSection>
         </aside>
       </>
     );
-  }
+  };
   
   type SmallSidebarItemProps = {
     Icon: ElementType;
@@ -67,20 +57,18 @@ import {
     url: string;
   };
   
-  function SmallSidebarItem({ Icon, title, url }: SmallSidebarItemProps) {
-    return (
-      <a
-        href={url}
-        className={twMerge(
-          "py-4 px-1 flex flex-col items-center rounded-lg gap-1",
-          "btn-ghost" // Tailwind CSS class for ghost button
-        )}
-      >
-        <Icon className="w-6 h-6" />
-        <div className="text-sm">{title}</div>
-      </a>
-    );
-  }
+  const SmallSidebarItem: React.FC<SmallSidebarItemProps> = ({ Icon, title, url }) => (
+    <a
+      href={url}
+      className={twMerge(
+        "py-4 px-1 flex flex-col items-center rounded-lg gap-1",
+        "btn-ghost" 
+      )}
+    >
+      <Icon className="w-6 h-6" />
+      <div className="text-sm">{title}</div>
+    </a>
+  );
   
   type LargeSidebarSectionProps = {
     children: ReactNode;
@@ -88,17 +76,15 @@ import {
     visibleItemCount?: number;
   };
   
-  function LargeSidebarSection({
+  const LargeSidebarSection: React.FC<LargeSidebarSectionProps> = ({
     children,
     title,
     visibleItemCount = Number.POSITIVE_INFINITY,
-  }: LargeSidebarSectionProps) {
+  }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const childrenArray = Children.toArray(children).flat();
     const showExpandButton = childrenArray.length > visibleItemCount;
-    const visibleChildren = isExpanded
-      ? childrenArray
-      : childrenArray.slice(0, visibleItemCount);
+    const visibleChildren = isExpanded ? childrenArray : childrenArray.slice(0, visibleItemCount);
     const ButtonIcon = isExpanded ? ChevronUp : ChevronDown;
   
     return (
@@ -107,7 +93,7 @@ import {
         {visibleChildren}
         {showExpandButton && (
           <Button
-            onClick={() => setIsExpanded((e) => !e)}
+            onClick={() => setIsExpanded(prev => !prev)}
             variant="ghost"
             className="w-full flex items-center rounded-lg gap-4 p-3"
           >
@@ -117,7 +103,7 @@ import {
         )}
       </div>
     );
-  }
+  };
   
   type LargeSidebarItemProps = {
     IconOrImgUrl: ElementType | string;
@@ -126,32 +112,28 @@ import {
     isActive?: boolean;
   };
   
-  function LargeSidebarItem({
+  const LargeSidebarItem: React.FC<LargeSidebarItemProps> = ({
     IconOrImgUrl,
     title,
     url,
     isActive = false,
-  }: LargeSidebarItemProps) {
-    return (
-      <a
-        href={url}
-        className={twMerge(
-          "w-full flex items-center rounded-lg gap-4 p-3",
-          "btn-ghost", // Tailwind CSS class for ghost button
-          isActive ? "font-bold bg-neutral-100 hover:bg-secondary" : undefined
-        )}
-      >
-        {typeof IconOrImgUrl === "string" ? (
-          <img src={IconOrImgUrl} className="w-6 h-6 rounded-full" />
-        ) : (
-          <IconOrImgUrl className="w-6 h-6" />
-        )}
-        <div className="whitespace-nowrap overflow-hidden text-ellipsis">
-          {title}
-        </div>
-      </a>
-    );
-  }
+  }) => (
+    <a
+      href={url}
+      className={twMerge(
+        "w-full flex items-center rounded-lg gap-4 p-3",
+        "btn-ghost", 
+        isActive ? "font-bold bg-neutral-100 hover:bg-secondary" : undefined
+      )}
+    >
+      {typeof IconOrImgUrl === "string" ? (
+        <img src={IconOrImgUrl} className="w-6 h-6 rounded-full" />
+      ) : (
+        <IconOrImgUrl className="w-6 h-6" />
+      )}
+      <div className="whitespace-nowrap overflow-hidden text-ellipsis">{title}</div>
+    </a>
+  );
   
   export default Sidebar;
   
