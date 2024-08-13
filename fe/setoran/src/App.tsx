@@ -3,6 +3,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 
 import NotFound from "./pages/NotFound";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 
 function App() {
   return (
@@ -21,7 +23,13 @@ function App() {
           <Route path="customers" element={<Customers />} />
           <Route path="income" element={<Income />} /> */}
         </Route>
+          
+          {/* 404 */}
         <Route path="*" element={<NotFound />} />
+
+        {/* Auth Routes */}
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<Signup/>} />
       </Routes>
     </BrowserRouter>
   );
