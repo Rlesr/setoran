@@ -2,8 +2,8 @@ import colors from 'tailwindcss/colors';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "selector",
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -36,7 +36,7 @@ export default {
       {
         mytheme: {
           "primary": colors.blue[500],
-          "secondary": colors.neutral[200], // Custom secondary color
+          "secondary": colors.neutral[200], 
           "accent": colors.blue[600],
           "neutral": colors.neutral[500], // Custom neutral color
           "base-100": colors.white,
