@@ -1,30 +1,30 @@
-import React from "react";
-import Sidebar from "../src/layouts/Sidebar";
-import PageHeader from "./layouts/PageHeader";
-import CategoryPills from "./components/CategoryPills";
-import { categories } from "./data/categories";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminLayout from "./layouts/AdminLayout";
+import UserLayout from "./layouts/UserLayout";
 
-const App: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = React.useState<string>(categories[0]);
+import NotFound from "./pages/NotFound";
 
+function App() {
   return (
-    <div className="max-h-screen flex flex-col">
-      <PageHeader />
-      <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
-        <Sidebar />
-        <div className="overflow-x-hidden px-8 pb-4">
-          <div className="sticky top-0 bg-transparent z-10 pb-4">
-            <CategoryPills
-              categories={categories}
-              selectedCategory={selectedCategory}
-              onSelect={setSelectedCategory}
-            />
-          </div>
-          <div className="grid gap-4"> </div>
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* User Routes */}
+        <Route path="/" element={<UserLayout />}>
+          {/* <Route index element={<Home />} />
+          <Route path="products" element={<ProductList />} />
+          <Route path="profile" element={<Profile />} /> */}
+        </Route>
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          {/* <Route path="dashboard" element={<DashboardHome />} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="income" element={<Income />} /> */}
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;

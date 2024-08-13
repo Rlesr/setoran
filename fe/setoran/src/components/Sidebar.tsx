@@ -9,7 +9,7 @@ import {
   } from "lucide-react";
   import { Children, ElementType, ReactNode, useState } from "react";
   import { twMerge } from "tailwind-merge";
-  import Button from "../components/Button";
+  import Button from "./Button";
   import useSidebarStore from "../stores/useSidebarStore";
   
   const Sidebar = () => {
