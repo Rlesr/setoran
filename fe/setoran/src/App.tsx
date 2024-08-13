@@ -2,19 +2,10 @@ import React from "react";
 import Sidebar from "../src/layouts/Sidebar";
 import PageHeader from "./layouts/PageHeader";
 import CategoryPills from "./components/CategoryPills";
+import { categories } from "./data/categories";
 
 const App: React.FC = () => {
-  // Define the state for categories and selectedCategory
-  const [categories] = React.useState<string[]>([
-    "All",
-    "Sales",
-    "Data Stocks",
-    "Item Data",
-  ]);
-
-  const [selectedCategory, setSelectedCategory] = React.useState<string>(
-    categories[0]
-  );
+  const [selectedCategory, setSelectedCategory] = React.useState<string>(categories[0]);
 
   return (
     <div className="max-h-screen flex flex-col">

@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-// Define button styles using Tailwind CSS and DaisyUI classes
 const buttonStyles = {
   base: 'btn transition-transform ', // Transition for smooth hover effect
   variants: {
@@ -16,7 +15,7 @@ const buttonStyles = {
   },
 };
 
-// Define the ButtonProps type
+
 type ButtonProps = ComponentProps<'button'> & {
   variant?: keyof typeof buttonStyles.variants;
   size?: keyof typeof buttonStyles.sizes;
