@@ -6,6 +6,6 @@ type NotFoundProps = {
 
 const NotFound:React.FC<NotFoundProps> = () => {
     
-    return <div>Have a good coding</div>
+    return <div>404</div>
 }
 export default NotFound;

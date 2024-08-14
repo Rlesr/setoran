@@ -1,5 +1,5 @@
 import React from "react";
-import logoPT from "../assets/koperasiLogo.png";
+import logoPT from "../assets/Pavicon/koperasiLogo.png";
 import { Bell, Menu, Moon, User } from "lucide-react";
 import Button from "../components/Button";
 import useSidebarStore from "../stores/useSidebarStore";

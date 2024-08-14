@@ -1,8 +1,8 @@
-import colors from 'tailwindcss/colors';
+import colors from "tailwindcss/colors";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "selector",
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -22,32 +22,34 @@ export default {
           cta: "rgba(var(--cta))",
           "cta-active": "rgba(var(--cta-active))",
           "cta-text": "rgba(var(--cta-text))",
-  
+
           grape: "rgba(var(--grape))",
+        },
+        fontFamily: {
+          primary : "Poppins",
+          secondary: "Pacifico"
         },
       },
     },
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [require("daisyui")],
   daisyui: {
     themes: [
       {
         mytheme: {
-          "primary": colors.blue[500],
-          "secondary": colors.neutral[200], // Custom secondary color
-          "accent": colors.blue[600],
-          "neutral": colors.neutral[500], // Custom neutral color
+          primary: colors.blue[500],
+          secondary: colors.neutral[200],
+          accent: colors.blue[600],
+          neutral: colors.neutral[500],
           "base-100": colors.white,
-          "info": colors.blue[300],
-          "success": colors.green[500],
-          "warning": colors.yellow[500],
-          "error": colors.red[500],
+          info: colors.blue[300],
+          success: colors.green[500],
+          warning: colors.yellow[500],
+          error: colors.red[500],
         },
       },
-      'light',
-      'dark',
+      "light",
+      "dark",
     ],
   },
 };
