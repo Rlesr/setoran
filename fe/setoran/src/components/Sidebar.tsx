@@ -1,11 +1,10 @@
 import {
+  BarChart,
   ChevronDown,
   ChevronUp,
-  Clapperboard,
-  Home,
-  Library,
-  Podcast,
-  Repeat,
+  LayoutDashboard,
+  Package,
+  ShoppingCart,
 } from "lucide-react";
 import { Children, ElementType, ReactNode, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -22,10 +21,10 @@ const Sidebar = () => {
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
-        <SmallSidebarItem Icon={Home} title="Home" url="/" />
-        <SmallSidebarItem Icon={Repeat} title="Shorts" url="/shorts" />
-        <SmallSidebarItem Icon={Clapperboard} title="Subscriptions" url="/subscriptions" />
-        <SmallSidebarItem Icon={Library} title="Library" url="/library" />
+        <SmallSidebarItem Icon={LayoutDashboard} title="Dashboard" url="/admin" />
+        <SmallSidebarItem Icon={ShoppingCart} title="Sales" url="/admin/sales" />
+        <SmallSidebarItem Icon={Package} title="Purchase" url="/admin/purchase" />
+        <SmallSidebarItem Icon={BarChart} title="Report" url="/admin/report" />
       </aside>
       {isSmallOpen && (
         <div
@@ -36,15 +35,15 @@ const Sidebar = () => {
       <aside
         className={`w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
-        } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}
+        } ${isSmallOpen ? "flex z-[999] bg-white dark:bg-black max-h-screen" : "hidden"}`}
       >
-        <div className="lg:hidden pt-2 pb-4 px-2 sticky top-0 bg-white"></div>
+        <div className="lg:hidden pt-2 pb-4 px-2 sticky top-0 bg-background-light dark:bg-background-dark"></div>
         <LargeSidebarSection>
-          <LargeSidebarItem isActive IconOrImgUrl={Home} title="Home" url="/" />
+          <LargeSidebarItem isActive IconOrImgUrl={LayoutDashboard} title="Home" url="/" />
         </LargeSidebarSection>
         <hr />
         <LargeSidebarSection title="Explore">
-          <LargeSidebarItem IconOrImgUrl={Podcast} title="Podcasts" url="/podcasts" />
+          <LargeSidebarItem IconOrImgUrl={ShoppingCart} title="Sales" url="/admin/sales" />
         </LargeSidebarSection>
       </aside>
     </>
