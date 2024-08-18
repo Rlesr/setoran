@@ -1,29 +1,60 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminLayout from "./layouts/AdminLayout";
-import UserLayout from "./layouts/UserLayout";
+import { useEffect, useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
-import NotFound from "./pages/NotFound";
-import Login from "./pages/auth/Login";
-import Signup from "./pages/auth/Signup";
+import Loader from './common/Loader';
+import PageTitle from './components/PageTitle';
+import DefaultLayout from './layouts/admin/DefaultLayout';
+import ECommerce from './pages/admin/Dashboard/Dashboard';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 function App() {
-  return (
-    <BrowserRouter>
+  const [loading, setLoading] = useState<boolean>(true);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <DefaultLayout>
       <Routes>
-        {/* User Routes */}
-        <Route path="/" element={<UserLayout />}></Route>
+        <Route
+          index
+          element={
+            <>
+              <PageTitle title=" Dashboard | Koperasi  " />
+              <ECommerce />
+            </>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <>
+              <PageTitle title=" Profile " />
+              <Profile />
+            </>
+          }
+        />
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}></Route>
-
-        {/* 404 */}
-        <Route path="*" element={<NotFound />} />
-
-        {/* Auth Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/settings"
+          element={
+            <>
+              <PageTitle title="Settings" />
+              <Settings />
+            </>
+          }
+        />
       </Routes>
-    </BrowserRouter>
+    </DefaultLayout>
   );
 }
 
