@@ -14,7 +14,7 @@ const chartOptions: ApexOptions = {
     height: 335,
     type: 'area',
     dropShadow: {
-      enabled: true,
+      enabled: false,
       color: '#623CEA14',
       top: 10,
       blur: 4,
@@ -43,7 +43,7 @@ const chartOptions: ApexOptions = {
   },
   dataLabels: { enabled: false },
   markers: {
-    size: 4,
+    size: 1,
     colors: '#fff',
     strokeColors: ['#3056D3', '#80CAEE'],
     strokeWidth: 3,
@@ -76,14 +76,37 @@ const initialSeries = [
 ];
 
 const ChartOne: React.FC = () => {
-  const [series] = useState(initialSeries);
+  const [] = useState(initialSeries);
+  const [activeSeries, setActiveSeries] = useState<number[]>([0]);
+
+  const toggleSeries = (index: number) => {
+    if (activeSeries.includes(index)) {
+      setActiveSeries(activeSeries.filter((i) => i !== index));
+    } else {
+      setActiveSeries([...activeSeries, index]);
+    }
+  };
+
+  const filteredSeries = initialSeries.filter((_, index) => activeSeries.includes(index));
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
         <div className="flex w-full flex-wrap gap-3 sm:gap-5">
-          <LegendItem color="primary" label="Total Revenue" dateRange="12.04.2022 - 12.05.2022" />
-          <LegendItem color="secondary" label="Total Sales" dateRange="12.04.2022 - 12.05.2022" />
+          <LegendItem
+            color="primary"
+            label="Total Revenue"
+            dateRange="12.04.2022 - 12.05.2022"
+            onClick={() => toggleSeries(0)}
+            isActive={activeSeries.includes(0)}
+          />
+          <LegendItem
+            color="secondary"
+            label="Total Sales"
+            dateRange="12.04.2022 - 12.05.2022"
+            onClick={() => toggleSeries(1)}
+            isActive={activeSeries.includes(1)}
+          />
         </div>
         <div className="flex w-full max-w-45 justify-end">
           <ChartButtonGroup />
@@ -93,7 +116,7 @@ const ChartOne: React.FC = () => {
       <div id="chartOne" className="-ml-5">
         <ReactApexChart
           options={chartOptions}
-          series={series}
+          series={filteredSeries}
           type="area"
           height={350}
         />
@@ -102,13 +125,13 @@ const ChartOne: React.FC = () => {
   );
 };
 
-const LegendItem: React.FC<{ color: string; label: string; dateRange: string }> = ({ color, label, dateRange }) => (
-  <div className="flex min-w-47.5">
-    <span className={`mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-${color}`}>
-      <span className={`block h-2.5 w-full max-w-2.5 rounded-full bg-${color}`}></span>
+const LegendItem: React.FC<{ color: string; label: string; dateRange: string; onClick: () => void; isActive: boolean }> = ({ color, label, dateRange, onClick, isActive }) => (
+  <div className="flex min-w-47.5 cursor-pointer" onClick={onClick}>
+    <span className={`mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border ${isActive ? `border-${color}` : 'border-gray-300'}`}>
+      <span className={`block h-2.5 w-full max-w-2.5 rounded-full ${isActive ? `bg-${color}` : 'bg-gray-300'}`}></span>
     </span>
     <div className="w-full">
-      <p className={`font-semibold text-${color}`}>{label}</p>
+      <p className={`font-semibold ${isActive ? `text-${color}` : 'text-gray-500'}`}>{label}</p>
       <p className="text-sm font-medium">{dateRange}</p>
     </div>
   </div>
